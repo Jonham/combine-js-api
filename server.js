@@ -1,5 +1,6 @@
 var express = require('express');
 var fs = require('fs');
+var config = require('./config'); // 引入预设变量
 
 var app = express();
 
@@ -15,7 +16,7 @@ app.get('/', function(req, res) {
     var arrFilename = params.split(',');
 
     // js文件的存放目录
-    const libPath = "js/";
+    const libPath = config.basicFilepath;
 
     var arrContent = [];
 
@@ -24,10 +25,15 @@ app.get('/', function(req, res) {
         //忽略空文件名
         if (filename===undefined || filename==='') {return;}
 
-        let realPath = libPath + filename;
+        let realPath = libPath + filename; //合并成为实际的js文件路径
+        // 读取js文件内容
         var fileContent = fs.readFileSync(realPath, { encoding: 'utf8' });
 
-        console.log(fileContent);
+        // 打印出每个文件的内容
+        if (process.env.NODE_ENV!=="production") {
+            console.log(fileContent);
+            console.log("当前是测试模式。生产模式运行 \n\t'npm run server'\n");
+        }
         // 开始读取每个文件
         arrContent.push(fileContent);
     });
@@ -36,8 +42,14 @@ app.get('/', function(req, res) {
 });
 
 
-app.listen(5000);
-console.log("visited http://localhost:5000");
+app.listen(config.port);
+if (process.env.NODE_ENV==='production') {
+    console.log('当前是 生产环境模式');
+} else {
+    console.log('当前是 测试环境模式：为方便在浏览器查看效果，已加入了<pre>标签。');
+    console.log('要在脚本中使用此api，请ctrl+c关闭此进程。并重新运行 npm run server');
+}
+console.log("visite http://localhost:" + config.port + "?" + config.presetFilelist);
 
 // 方便浏览器测试时查看
 function addPreElement(content) {
@@ -45,5 +57,5 @@ function addPreElement(content) {
         // 如果是生产环境则不加 pre 标签美化浏览器查看
         return content;
     }
-    return "<pre>" + content + "</pre>";
+    return "<h1 style=\"color:red;\">当前是测试环境，加入了pre标签，方便查看文件内容。</h1><pre>" + content + "</pre>";
 }
