@@ -1,0 +1,26 @@
+{
+  "name": "combine-js-api",
+  "version": "0.0.1",
+  "description": "Combine your JavaScript files as one.",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "server": "NODE_ENV=production;node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jonham/combine-js-api.git"
+  },
+  "keywords": [
+    "Combine JavaScript files."
+  ],
+  "author": "Jonham",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jonham/combine-js-api/issues"
+  },
+  "homepage": "https://github.com/Jonham/combine-js-api#readme",
+  "devDependencies": {
+    "express": "^4.14.0"
+  }
+}
