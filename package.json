@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "node server.js",
-    "server": "NODE_ENV=production;node server.js"
+    "server": "cross-env NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,8 @@
   "homepage": "https://github.com/Jonham/combine-js-api#readme",
   "devDependencies": {
     "express": "^4.14.0"
+  },
+  "dependencies": {
+    "cross-env": "^3.1.3"
   }
 }

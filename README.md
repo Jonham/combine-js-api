@@ -12,6 +12,7 @@ Combine your JavaScript files as one.
 6.(生产环境): npm run server
   >> 生产环境没有加<pre>标签，所以在浏览器看有点奇怪。
 
+
 ```
 
 tips:
