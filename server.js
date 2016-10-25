@@ -38,11 +38,32 @@ app.get('/', function(req, res) {
         arrContent.push(fileContent);
     });
 
+    // 设置返回数据的MIME类型
+    if (arrFilename[0]) {
+        var filename = arrFilename[0];
+        var arr = filename.split('.');
+        var subfix = arr[1];
+
+        if (subfix !== undefined) {
+            switch (subfix) {
+                case 'css':
+                    res.set('Content-Type', 'text/css');
+                    break;
+                case 'js':
+                    res.set('Content-Type', 'text/javascript');
+                    break;
+                default:
+                    res.set('Content-Type', 'text/plain');
+            }
+        }
+    }
+
     res.send( addPreElement( arrContent.join('\n') ) );
 });
 
-
 app.listen(config.port);
+
+// 模式
 if (process.env.NODE_ENV==='production') {
     console.log('当前是 生产环境模式');
 } else {

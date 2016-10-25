@@ -2,7 +2,6 @@
 Combine your JavaScript files as one.
 
 ```
-
 1.(下载代码): git clone https://github.com/Jonham/combine-js-api.git
 2.(进入目录): cd *combine-js-api*
 3.(安装依赖): npm install
@@ -11,8 +10,6 @@ Combine your JavaScript files as one.
   >> 根据你的喜好，更改a.js,b.js,app.js等的位置，你也可以在js文件夹中增加文件
 6.(生产环境): npm run server
   >> 生产环境没有加<pre>标签，所以在浏览器看有点奇怪。
-
-
 ```
 
 tips:
